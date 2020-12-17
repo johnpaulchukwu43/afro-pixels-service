@@ -14,7 +14,7 @@ afro:
   pixels:
     datasource:
       primary:
-        url: jdbc:mysql://localhost:3306/afro_pixels?useSSL=false&createIfNotExists=True
+        url: jdbc:mysql://localhost:3306/afro_pixels?useSSL=false&createDatabaseIfNotExists=True
         driverClassName: com.mysql.jdbc.Driver
         username: root
         password: password
@@ -28,5 +28,5 @@ afro:
       packages-to-scan: com.jworks
       hibernate:
         show-sql: false
-        ddl-auto: none
+        ddl-auto: update
         dialect: org.hibernate.dialect.MySQL55Dialect
