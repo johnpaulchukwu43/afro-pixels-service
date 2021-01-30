@@ -34,6 +34,9 @@ public class EndUser extends BaseEntity implements Serializable {
     @Column(name = "last_name", length = 50)
     private String lastName;
 
+    @Column(name = "user_reference", nullable = false, length = 63, unique = true, updatable = false)
+    private String userReference;
+
     @Column(name = "email_address", length = 60, nullable = false, unique = true)
     private String emailAddress;
 

@@ -1,5 +1,6 @@
 package com.jworks.afro.pixels.service.repositories;
 
+import com.jworks.afro.pixels.service.entities.EndUserImageDownloadHistory;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -8,5 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface EndUserImageDownloadHistoryRepository extends BaseRepository<EndUserImageDownloadHistoryRepository,Long>{
+public interface EndUserImageDownloadHistoryRepository extends BaseRepository<EndUserImageDownloadHistory,Long>{
 }

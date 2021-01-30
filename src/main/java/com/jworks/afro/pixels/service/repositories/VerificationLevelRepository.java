@@ -1,7 +1,10 @@
 package com.jworks.afro.pixels.service.repositories;
 
 import com.jworks.afro.pixels.service.entities.VerificationLevel;
+import com.jworks.afro.pixels.service.enums.Level;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 /**
  * @author Johnpaul Chukwu.
@@ -10,4 +13,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VerificationLevelRepository extends BaseRepository<VerificationLevel,Long>{
+
+    Optional<VerificationLevel> findByLevel(Level level);
 }

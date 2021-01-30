@@ -1,7 +1,10 @@
 package com.jworks.afro.pixels.service.repositories;
 
 import com.jworks.afro.pixels.service.entities.EndUser;
+import com.jworks.afro.pixels.service.repositories.projection.IdProjection;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 /**
  * @author Johnpaul Chukwu.
@@ -10,4 +13,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EndUserRepository extends BaseRepository<EndUser,Long>{
+
+    Optional<IdProjection> findIdByUserReference(String userReference);
+
+    Optional<EndUser> findByUserReference(String userReference);
 }
