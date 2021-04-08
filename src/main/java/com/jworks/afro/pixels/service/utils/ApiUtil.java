@@ -66,6 +66,11 @@ public class ApiUtil {
                 .body(new ApiResponseDto(ApiResponseDto.Status.success, createdPhrase(whatWasCreated), data));
     }
 
+    public static ResponseEntity<ApiResponseDto> created(String whatWasCreated) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new ApiResponseDto(ApiResponseDto.Status.success, createdPhrase(whatWasCreated), null));
+    }
+
     public static ResponseEntity<ApiResponseDto> updated(String whatWasUpdated, Serializable data) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ApiResponseDto(ApiResponseDto.Status.success, updatedPhrase(whatWasUpdated), data));
@@ -84,7 +89,7 @@ public class ApiUtil {
         return ResponseEntity.status(httpStatus).body(new ApiResponseDto(status, message, (Serializable) data));
     }
 
-    static ResponseEntity<ApiResponseDto> retrievedOne(String name, Serializable dto) {
+    public static ResponseEntity<ApiResponseDto> retrievedOne(String name, Serializable dto) {
         return response(HttpStatus.OK, ApiResponseDto.Status.success, ApiUtil.retrievedPhrase(name), dto);
     }
 

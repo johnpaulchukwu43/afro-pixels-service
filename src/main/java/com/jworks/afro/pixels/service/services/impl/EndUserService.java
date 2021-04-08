@@ -103,6 +103,12 @@ public class EndUserService extends ServiceBluePrintImpl<EndUser,EndUserDto> {
                 .orElseThrow(() -> new NotFoundRestApiException(String.format("User with reference %s not found.", endUserReference)));
     }
 
+    public EndUser getUserByUsername(String endUserUsername) throws NotFoundRestApiException {
+
+        return endUserRepository.findByUsername(endUserUsername)
+                .orElseThrow(() -> new NotFoundRestApiException(String.format("User with username %s not found.", endUserUsername)));
+    }
+
     private void saveVerificationLevelAsNewlyOnBoardedEndUser(EndUser endUser) throws SystemServiceException {
 
         endUserVerificationLevelService.saveVerificationLevelAsNewlyOnBoardedEndUser(endUser);
@@ -144,7 +150,9 @@ public class EndUserService extends ServiceBluePrintImpl<EndUser,EndUserDto> {
 
         String formOfIdentificationType = endUserDto.getFormOfIdentificationType();
         String formOfIdentificationDocumentUrl = endUserDto.getFormOfIdentificationDocumentUrl();
-
+        /*
+        * We only want to verify the formOfIdentificationType if a formOfIdentificationDocumentUrl is provided in the request.
+        * */
         if(!StringUtils.isBlank(formOfIdentificationType) && !StringUtils.isBlank(formOfIdentificationDocumentUrl)){
             
             return Optional.of(formOfIdentificationService.verifyFormOfIdentificationType(formOfIdentificationType));

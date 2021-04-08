@@ -57,14 +57,18 @@ public class EndUserImageCategoryService extends ServiceBluePrintImpl<EndUserIma
 
     public void updateCategory(Long categoryId,EndUserImageCategoryDto endUserImageCategoryDto) throws NotFoundRestApiException, SystemServiceException {
 
-        EndUserImageCategory endUserImageCategory = endUserImageCategoryRepository.findById(categoryId).orElseThrow(
-                () -> new NotFoundRestApiException(String.format("Category with id: %s, not found.", categoryId))
-        );
+        EndUserImageCategory endUserImageCategory = getEndUserImageCategoryById(categoryId);
 
         BeanUtils.copyProperties(endUserImageCategoryDto,endUserImageCategory);
 
         super.save(endUserImageCategory);
 
+    }
+
+    public EndUserImageCategory getEndUserImageCategoryById(Long categoryId) throws NotFoundRestApiException {
+        return endUserImageCategoryRepository.findById(categoryId).orElseThrow(
+                    () -> new NotFoundRestApiException(String.format("Category with id: %s, not found.", categoryId))
+            );
     }
 
 
