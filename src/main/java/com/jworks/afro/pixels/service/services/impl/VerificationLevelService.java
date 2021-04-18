@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class VerificationLevelService extends ServiceBluePrintImpl{
+public class VerificationLevelService extends ServiceBluePrintImpl<VerificationLevel,VerificationLevel>{
 
 
     private final VerificationLevelRepository verificationLevelRepository;

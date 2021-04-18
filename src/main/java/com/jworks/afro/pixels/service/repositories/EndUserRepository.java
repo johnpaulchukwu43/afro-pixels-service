@@ -16,10 +16,7 @@ public interface EndUserRepository extends BaseRepository<EndUser,Long>{
 
     Optional<IdProjection> findIdByUserReference(String userReference);
 
-    Optional<EndUser> findByUserReference(String userReference);
-
     Optional<EndUser> findByUsername(String userReference);
-    Optional<EndUser> findById(Long userId);
 
     Optional<IdProjection> findIdByUsername(String username);
     Optional<IdProjection> findIdByUsernameAndIdNot(String username, Long id);

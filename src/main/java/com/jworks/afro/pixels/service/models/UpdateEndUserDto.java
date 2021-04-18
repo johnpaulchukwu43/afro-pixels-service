@@ -1,7 +1,6 @@
 package com.jworks.afro.pixels.service.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.jworks.afro.pixels.service.validator.AcceptedPasswordFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +29,7 @@ public class UpdateEndUserDto implements Serializable {
     private String lastName;
 
     @NotBlank(message = "Email Address is a required field")
+//todo review email vaidator
 //    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$",message="must be a valid email address.")
     private String emailAddress;
 

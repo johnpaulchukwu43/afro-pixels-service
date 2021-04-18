@@ -1,6 +1,5 @@
 package com.jworks.afro.pixels.service.controllers;
 
-import com.jworks.afro.pixels.service.entities.EndUserImage;
 import com.jworks.afro.pixels.service.exceptions.NotFoundRestApiException;
 import com.jworks.afro.pixels.service.exceptions.SystemServiceException;
 import com.jworks.afro.pixels.service.exceptions.UnProcessableOperationException;
@@ -8,10 +7,8 @@ import com.jworks.afro.pixels.service.models.*;
 import com.jworks.afro.pixels.service.services.impl.EndUserImageService;
 import com.jworks.afro.pixels.service.utils.ApiUtil;
 import com.jworks.afro.pixels.service.utils.HasAuthority;
-import com.jworks.afro.pixels.service.utils.MapperUtil;
 import com.jworks.afro.pixels.service.utils.RestConstants;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
