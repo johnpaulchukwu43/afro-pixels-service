@@ -1,0 +1,28 @@
+server:
+  port: 2021
+spring:
+  jackson:
+    mapper:
+      default-view-inclusion: true
+    serialization:
+      indent-output: false
+  # Just a fix for redis session error that came up.
+  session:
+    store-type: none
+  profiles:
+    active: jp
+
+afro:
+  pixels:
+    datasource:
+      primary:
+        url: jdbc:mysql://localhost:3306/afro_pixels?useSSL=false
+        driverClassName: com.mysql.jdbc.Driver
+        username: root
+        password: root
+        max:
+          connection:
+            pool-size: '40'
+    liquibase:
+      enable: false
+      changelog: classpath:config/liquibase/index.xml
