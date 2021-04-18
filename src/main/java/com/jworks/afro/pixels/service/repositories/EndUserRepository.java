@@ -19,4 +19,12 @@ public interface EndUserRepository extends BaseRepository<EndUser,Long>{
     Optional<EndUser> findByUserReference(String userReference);
 
     Optional<EndUser> findByUsername(String userReference);
+    Optional<EndUser> findById(Long userId);
+
+    Optional<IdProjection> findIdByUsername(String username);
+    Optional<IdProjection> findIdByUsernameAndIdNot(String username, Long id);
+    Optional<IdProjection> findIdByPhoneNumber(String phoneNumber);
+    Optional<IdProjection> findIdByPhoneNumberAndIdNot(String phoneNumber, Long id);
+    Optional<IdProjection> findIdByEmailAddress(String emailAddress);
+    Optional<IdProjection> findIdByEmailAddressAndIdNot(String emailAddress, Long id);
 }

@@ -18,13 +18,13 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EndUserImageCategoryDto implements Serializable {
+
+    private Long id;
 
     @NotBlank(message = "name is a required field")
     private String name;
 
     private String description;
-
-    private boolean isActive;
 }

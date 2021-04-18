@@ -30,3 +30,6 @@ afro:
         show-sql: false
         ddl-auto: update
         dialect: org.hibernate.dialect.MySQL55Dialect
+    jwt:
+      secret: secret
+      expiration-period-milli-seconds: 999999

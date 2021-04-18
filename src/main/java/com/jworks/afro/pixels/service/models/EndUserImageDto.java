@@ -22,11 +22,13 @@ import java.io.Serializable;
 public class EndUserImageDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private Long id;
+
     private String name;
 
-    private EndUserImageCategory endUserImageCategory;
+    private EndUserImageCategoryDto endUserImageCategory;
 
-    private EndUserDto endUser;
+    private EndUserDto imageOwner;
 
     private String tag;
 

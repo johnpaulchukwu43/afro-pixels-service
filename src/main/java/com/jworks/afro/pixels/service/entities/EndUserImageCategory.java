@@ -35,7 +35,4 @@ public class EndUserImageCategory extends BaseEntity implements Serializable {
 
     @Column
     private String description;
-
-    @OneToMany(mappedBy = "endUserImageCategory", fetch = FetchType.LAZY)
-    private List<EndUserImage> endUserImages = new ArrayList<>();
 }

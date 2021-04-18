@@ -5,12 +5,19 @@ import com.jworks.afro.pixels.service.entities.EndUserImage;
 import com.jworks.afro.pixels.service.entities.EndUserImageCategory;
 import com.jworks.afro.pixels.service.exceptions.DuplicateEntryException;
 import com.jworks.afro.pixels.service.exceptions.NotFoundRestApiException;
-import com.jworks.afro.pixels.service.models.CreateEndUserImageDto;
-import com.jworks.afro.pixels.service.models.EndUserImageDto;
+import com.jworks.afro.pixels.service.exceptions.SystemServiceException;
+import com.jworks.afro.pixels.service.exceptions.UnProcessableOperationException;
+import com.jworks.afro.pixels.service.models.*;
 import com.jworks.afro.pixels.service.repositories.EndUserImageRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Johnpaul Chukwu.
@@ -24,6 +31,8 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
     private final EndUserImageRepository endUserImageRepository;
     private final EndUserImageCategoryService endUserImageCategoryService;
     private final EndUserService endUserService;
+
+    private int maxPageSize = 100;
 
 
     @Autowired
@@ -51,7 +60,7 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
         }
     }
 
-    public String createEndUserImage(CreateEndUserImageDto createEndUserImageDto,String username) throws NotFoundRestApiException, DuplicateEntryException {
+    public String createEndUserImage(CreateEndUserImageDto createEndUserImageDto,String username) throws NotFoundRestApiException, SystemServiceException, UnProcessableOperationException {
 
         /*
         * 1. confirm the user exists for specified username
@@ -62,10 +71,41 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
 
         EndUser endUser = getUserIfExists(username);
 
+        checkIfUserCanUploadImage(endUser);
+
         EndUserImageCategory endUserImageCategory = getImageCategoryIfExists(createEndUserImageDto.getCategoryId());
 
-        persistEndUserImage(createEndUserImageDto,endUser,endUserImageCategory);
-        return username;
+        return persistEndUserImage(createEndUserImageDto, endUser, endUserImageCategory);
+    }
+
+    public PageOutput<EndUserImageDto> getImageBelongingToUser(String username, PageInput pageInput) throws NotFoundRestApiException, SystemServiceException {
+
+        EndUser endUser = getUserIfExists(username);
+
+        final PageRequest pageRequest = PageRequest.of(pageInput.getPage(), pageInput.getSize());
+
+        Page<EndUserImage> endUserImages = endUserImageRepository.findByEndUser(endUser, pageRequest);
+
+        List<EndUserImageDto> endUserImageDtoList = new ArrayList<>();
+
+        endUserImages.getContent().forEach(endUserImage -> {
+            EndUserImageDto endUserImageDto = convertEntityToDto(endUserImage);
+            endUserImageDto.setImageOwner(null);
+            endUserImageDtoList.add(endUserImageDto);
+        });
+
+        Page<EndUserImageDto> endUserImageDtoPage =
+                new PageImpl<>(endUserImageDtoList,pageRequest,endUserImages.getTotalElements());
+
+
+        return  PageOutput.fromPage(endUserImageDtoPage);
+    }
+
+    private void checkIfUserCanUploadImage(EndUser endUser) throws  UnProcessableOperationException {
+
+        if(!endUser.isCanUploadImages() || !endUser.isActive()){
+            throw new UnProcessableOperationException("User is not yet enabled to upload image. Contact Administrator.");
+        }
     }
 
 
@@ -79,7 +119,7 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
                 .endUserImageCategory(endUserImageCategory)
                 .description(createEndUserImageDto.getDescription())
                 .imageUrl(createEndUserImageDto.getImageUrl())
-                .isActive(false)
+                .isActive(true)
                 .name(name)
                 .tag(createEndUserImageDto.getTag())
                 .build();
@@ -104,11 +144,23 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
 
     @Override
     public EndUserImageDto convertEntityToDto(EndUserImage entity) {
+
+        EndUserImageCategoryDto endUserImageCategoryDto =
+                endUserImageCategoryService.convertEntityToDto(entity.getEndUserImageCategory());
+
+        endUserImageCategoryDto.setDescription(null);
+
+        EndUserDto endUserDto = EndUserDto.builder()
+                                    .username(entity.getEndUser().getUsername())
+                                    .build();
+
         return EndUserImageDto.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .description(entity.getDescription())
                 .imageUrl(entity.getImageUrl())
-                .endUserImageCategory(entity.getEndUserImageCategory())
+                .endUserImageCategory(endUserImageCategoryDto)
+                .imageOwner(endUserDto)
                 .isActive(entity.isActive())
                 .tag(entity.getTag())
                 .build();

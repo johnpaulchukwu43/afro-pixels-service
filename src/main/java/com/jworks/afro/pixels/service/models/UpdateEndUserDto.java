@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -22,7 +21,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-public class EndUserDto implements Serializable {
+public class UpdateEndUserDto implements Serializable {
 
     @Size(min = 2, message = "first name must be at least 2 characters long.")
     private String firstName;
@@ -33,10 +32,6 @@ public class EndUserDto implements Serializable {
     @NotBlank(message = "Email Address is a required field")
 //    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$",message="must be a valid email address.")
     private String emailAddress;
-
-    @AcceptedPasswordFormat
-    @NotBlank(message = "password is a required field")
-    private String password;
 
     @NotBlank(message = "username is a required field")
     @Size(min = 3, max = 50, message = "username must be between 3 - 50 characters long")

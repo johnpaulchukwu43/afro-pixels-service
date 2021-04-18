@@ -56,7 +56,4 @@ public class EndUser extends BaseEntity implements Serializable {
     @Column(name = "can_upload_images",nullable = false)
     @ColumnDefault("0")
     private boolean canUploadImages;
-
-    @OneToMany(mappedBy = "endUser", fetch = FetchType.LAZY)
-    private List<EndUserImage> endUserImages = new ArrayList<>();
 }

@@ -44,7 +44,10 @@ public class ApiResponseDto implements Serializable {
         pending;
     }
 
-    public static class ResponseError {
+    public static class ResponseError implements Serializable{
+
+        private static final long serialVersionUID = 1L;
+
         String fieldName;
         String fieldError;
 

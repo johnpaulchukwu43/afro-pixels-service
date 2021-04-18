@@ -39,7 +39,7 @@ public class EndUserImage extends BaseEntity implements Serializable {
     @Column(length = 150)
     private String tag;
 
-    @Column
+    @Column(nullable = false)
     private String description;
 
     @Column(length = 200, nullable = false)

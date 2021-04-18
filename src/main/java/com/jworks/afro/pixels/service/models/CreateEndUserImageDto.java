@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -26,11 +27,12 @@ public class CreateEndUserImageDto implements Serializable {
     @Size(min = 2, message = "image name must be at least 2 characters long.")
     private String name;
 
-    @NotBlank(message = " Catergory Id is a required field")
+    @NotNull(message = " Catergory Id is a required field")
     private Long categoryId;
 
     private String tag;
 
+    @NotNull(message = "Description is a required field")
     private String description;
 
     @NotBlank(message = "Image url is a required field")

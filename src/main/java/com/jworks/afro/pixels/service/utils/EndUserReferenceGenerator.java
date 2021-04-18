@@ -7,10 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-/**
- * @author bodmas
- * @since Nov 13, 2018.
- */
 
 @Service
 @RequiredArgsConstructor

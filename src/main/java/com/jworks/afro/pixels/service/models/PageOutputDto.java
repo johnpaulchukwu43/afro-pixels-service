@@ -15,7 +15,6 @@ import java.util.List;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class PageOutputDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
