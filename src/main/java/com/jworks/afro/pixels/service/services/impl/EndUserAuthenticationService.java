@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EndUserAuthenticationService {
 
-    private final EndUserRoleService endUserRoleService;
     private final EndUserService endUserService;
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;

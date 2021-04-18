@@ -1,6 +1,5 @@
 package com.jworks.afro.pixels.service.models;
 
-import com.jworks.afro.pixels.service.validator.AcceptedPasswordFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

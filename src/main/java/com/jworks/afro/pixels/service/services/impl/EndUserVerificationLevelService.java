@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class EndUserVerificationLevelService extends ServiceBluePrintImpl{
+public class EndUserVerificationLevelService extends ServiceBluePrintImpl<EndUserVerificationLevel,EndUserVerificationLevel>{
 
 
     private final EndUserVerificationLevelRepository endUserVerificationLevelRepository;

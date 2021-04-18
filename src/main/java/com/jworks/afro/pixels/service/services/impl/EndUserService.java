@@ -9,12 +9,9 @@ import com.jworks.afro.pixels.service.exceptions.*;
 import com.jworks.afro.pixels.service.models.*;
 import com.jworks.afro.pixels.service.repositories.EndUserRepository;
 import com.jworks.afro.pixels.service.utils.EndUserReferenceGenerator;
-import com.jworks.afro.pixels.service.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,11 +20,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -226,13 +218,6 @@ public class EndUserService extends ServiceBluePrintImpl<EndUser,EndUserDto> imp
     private void ensureUsernameDoesNotExist(String username) throws DuplicateEntryException {
 
         if(endUserRepository.findIdByUsername(username).isPresent()) {
-            throw new DuplicateEntryException(String.format("Username: %s is already taken.", username));
-        }
-    }
-
-    private void ensureUsernameDoesNotExist(String username, Long userId) throws DuplicateEntryException {
-
-        if(endUserRepository.findIdByUsernameAndIdNot(username, userId).isPresent()) {
             throw new DuplicateEntryException(String.format("Username: %s is already taken.", username));
         }
     }

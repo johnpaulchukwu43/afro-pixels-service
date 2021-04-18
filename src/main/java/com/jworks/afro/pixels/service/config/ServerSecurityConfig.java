@@ -2,8 +2,7 @@ package com.jworks.afro.pixels.service.config;
 
 import com.jworks.afro.pixels.service.services.impl.EndUserService;
 import com.jworks.afro.pixels.service.utils.RestConstants;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,39 +13,30 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 /**
  * @author Johnpaul Chukwu.
  * @since 15/04/2021
  */
 @Configuration
+@RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true)
 public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private EndUserService endUserService;
+    private final EndUserService endUserService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    @Autowired
-    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-    private String [] whiteListedEndPoints = new String[]{
+    private final String [] whiteListedEndPoints = new String[]{
             RestConstants.API_V1_PREFIX +"/user/authenticate",
             RestConstants.API_V1_PREFIX +"/user/signup",
             RestConstants.API_V1_PREFIX +"/afro-pixel/image-categories",
             RestConstants.API_V1_PREFIX +"/afro-pixel-images/**",
     };
-
-    @Bean
-    public static ServletListenerRegistrationBean httpSessionEventPublisher() {
-        return new ServletListenerRegistrationBean<>(new HttpSessionEventPublisher());
-    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

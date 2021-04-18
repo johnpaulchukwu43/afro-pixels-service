@@ -5,7 +5,6 @@ import com.jworks.afro.pixels.service.exceptions.SystemServiceException;
 import com.jworks.afro.pixels.service.models.ApiResponseDto;
 import com.jworks.afro.pixels.service.models.PageOutputDto;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
@@ -26,20 +24,6 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class ApiUtil {
-
-    public static String getClientId() throws SystemServiceException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) authentication;
-
-        String clientId = oAuth2Authentication.getOAuth2Request().getClientId();
-
-        if(StringUtils.isBlank(clientId)){
-            throw new SystemServiceException("Unable to retrieve user reference Id");
-        }
-
-        return clientId;
-
-    }
 
     public static String getLoggedInUser() throws SystemServiceException {
 

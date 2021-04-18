@@ -41,11 +41,8 @@ public class PasswordValidator implements ConstraintValidator<AcceptedPasswordFo
 
     private String message;
 
-    private static int mPasswordLength;
-
     @PostConstruct
     public void init() {
-        mPasswordLength = this.minPasswordLength;
         if (this.minNumOfUppercase > 0) {
             passwordRules.add(new CharacterRule(EnglishCharacterData.UpperCase, this.minNumOfUppercase));
         }

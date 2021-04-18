@@ -32,8 +32,6 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
     private final EndUserImageCategoryService endUserImageCategoryService;
     private final EndUserService endUserService;
 
-    private int maxPageSize = 100;
-
 
     @Autowired
     EndUserImageService(EndUserImageRepository endUserImageRepository, EndUserImageCategoryService endUserImageCategoryService, EndUserService endUserService){
@@ -78,7 +76,7 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
         return persistEndUserImage(createEndUserImageDto, endUser, endUserImageCategory);
     }
 
-    public PageOutput<EndUserImageDto> getImageBelongingToUser(String username, PageInput pageInput) throws NotFoundRestApiException, SystemServiceException {
+    public PageOutput<EndUserImageDto> getImageBelongingToUser(String username, PageInput pageInput) throws NotFoundRestApiException {
 
         EndUser endUser = getUserIfExists(username);
 

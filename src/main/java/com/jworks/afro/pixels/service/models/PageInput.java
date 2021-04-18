@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 public class PageInput implements Serializable {
 
-    private static Sort ASCENDING_SORT_BY_ID = Sort.by(Sort.Direction.ASC, "id");
+    private static final Sort ASCENDING_SORT_BY_ID = Sort.by(Sort.Direction.ASC, "id");
 
     private static final long serialVersionUID = 1L;
 
