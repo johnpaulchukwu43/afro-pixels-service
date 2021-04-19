@@ -22,7 +22,7 @@ import java.io.Serializable;
 public class EndUserRole extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "end_user_id", referencedColumnName = "id")
     private EndUser endUser;
 

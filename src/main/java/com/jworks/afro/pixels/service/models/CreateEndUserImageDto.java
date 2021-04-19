@@ -25,6 +25,7 @@ public class CreateEndUserImageDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Size(min = 2, message = "image name must be at least 2 characters long.")
+    @Size(max = 100, message = "image name cannot be more than 100 characters long.")
     private String name;
 
     @NotNull(message = " Catergory Id is a required field")

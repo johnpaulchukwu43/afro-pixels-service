@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class EndUserImage extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Column(length = 50, nullable = false, unique = true)
+    @Column(length = 100, nullable = false, unique = true)
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)

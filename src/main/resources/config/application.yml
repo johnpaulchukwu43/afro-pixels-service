@@ -1,28 +1,34 @@
 server:
-  port: 2021
+  port: ${APP_SERVER_PORT}
 spring:
   jackson:
     mapper:
       default-view-inclusion: true
     serialization:
       indent-output: false
-  # Just a fix for redis session error that came up.
   session:
     store-type: none
-  profiles:
-    active: jp
 
 afro:
   pixels:
     datasource:
       primary:
-        url: jdbc:mysql://localhost:3306/afro_pixels?useSSL=false
-        driverClassName: com.mysql.jdbc.Driver
-        username: root
-        password: root
+        url: ${APP_DB_NAME}
+        driverClassName: ${APP_DB_DRIVER_CLASS}
+        username: ${APP_DB_USERNAME}
+        password: ${APP_DB_PASSWORD}
         max:
           connection:
-            pool-size: '40'
+            pool-size: ${APP_DB_MAX_CONNECTION_POOL_SIZE}
+    jpa:
+      packages-to-scan: com.jworks
+      hibernate:
+        show-sql: ${APP_DB_SHOW_SQL}
+        ddl-auto: ${APP_DB_DDL_AUTO}
+        dialect: org.hibernate.dialect.MySQL55Dialect
     liquibase:
-      enable: false
+      enable: ${APP_LIQUIBASE_ENABLED}
       changelog: classpath:config/liquibase/index.xml
+    jwt:
+      secret: ${APP_JWT_SECRET}
+      expiration-period-milli-seconds: ${APP_JWT_EXPIRATION_PERIOD_SECONDS}
