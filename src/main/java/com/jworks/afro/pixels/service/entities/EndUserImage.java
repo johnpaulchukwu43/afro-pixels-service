@@ -61,6 +61,7 @@ public class EndUserImage extends BaseEntity implements Serializable {
     @Builder
     @Embeddable
     @NoArgsConstructor
+    @AllArgsConstructor
     public static class MetaData implements Serializable {
 
         private static final long serialVersionUID = 1L;

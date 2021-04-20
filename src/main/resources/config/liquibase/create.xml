@@ -1,313 +1,343 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-<changeSet author="jchukwu (generated)" id="1618836210114-1">
-    <createTable tableName="authority">
-        <column autoIncrement="true" name="id" type="BIGINT">
-            <constraints primaryKey="true"/>
-        </column>
-        <column name="created_at" type="datetime(6)"/>
-        <column name="updated_at" type="datetime(6)"/>
-        <column name="description" type="VARCHAR(255)"/>
-        <column name="friendly_name" type="VARCHAR(255)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="name" type="VARCHAR(255)">
-            <constraints nullable="false"/>
-        </column>
-    </createTable>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-2">
-    <createTable tableName="end_user">
-        <column autoIncrement="true" name="id" type="BIGINT">
-            <constraints primaryKey="true"/>
-        </column>
-        <column name="created_at" type="datetime(6)"/>
-        <column name="updated_at" type="datetime(6)"/>
-        <column defaultValueBoolean="false" name="can_upload_images" type="BIT(1)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="email_address" type="VARCHAR(60)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="first_name" type="VARCHAR(50)"/>
-        <column defaultValueBoolean="false" name="is_active" type="BIT(1)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="last_name" type="VARCHAR(50)"/>
-        <column name="password" type="VARCHAR(128)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="phone_number" type="VARCHAR(20)"/>
-        <column name="user_reference" type="VARCHAR(63)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="username" type="VARCHAR(50)">
-            <constraints nullable="false"/>
-        </column>
-    </createTable>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-3">
-    <createTable tableName="end_user_form_of_identification">
-        <column autoIncrement="true" name="id" type="BIGINT">
-            <constraints primaryKey="true"/>
-        </column>
-        <column name="created_at" type="datetime(6)"/>
-        <column name="updated_at" type="datetime(6)"/>
-        <column name="document_image_url" type="VARCHAR(255)">
-            <constraints nullable="false"/>
-        </column>
-        <column defaultValueBoolean="false" name="is_approved" type="BIT(1)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="end_user_id" type="BIGINT"/>
-        <column name="form_of_identification_id" type="BIGINT"/>
-    </createTable>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-4">
-    <createTable tableName="end_user_image">
-        <column autoIncrement="true" name="id" type="BIGINT">
-            <constraints primaryKey="true"/>
-        </column>
-        <column name="created_at" type="datetime(6)"/>
-        <column name="updated_at" type="datetime(6)"/>
-        <column name="description" type="VARCHAR(255)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="image_url" type="VARCHAR(200)">
-            <constraints nullable="false"/>
-        </column>
-        <column defaultValueBoolean="false" name="is_active" type="BIT(1)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="name" type="VARCHAR(100)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="tag" type="VARCHAR(150)"/>
-        <column name="owner_id" type="BIGINT"/>
-        <column name="end_user_image_category_id" type="BIGINT"/>
-    </createTable>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-5">
-    <createTable tableName="end_user_image_category">
-        <column autoIncrement="true" name="id" type="BIGINT">
-            <constraints primaryKey="true"/>
-        </column>
-        <column name="created_at" type="datetime(6)"/>
-        <column name="updated_at" type="datetime(6)"/>
-        <column name="description" type="VARCHAR(255)"/>
-        <column defaultValueBoolean="true" name="is_active" type="BIT(1)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="name" type="VARCHAR(255)">
-            <constraints nullable="false"/>
-        </column>
-    </createTable>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-6">
-    <createTable tableName="end_user_image_download_history">
-        <column autoIncrement="true" name="id" type="BIGINT">
-            <constraints primaryKey="true"/>
-        </column>
-        <column name="created_at" type="datetime(6)"/>
-        <column name="updated_at" type="datetime(6)"/>
-        <column name="end_user_id" type="BIGINT"/>
-        <column name="downloaded_image_id" type="BIGINT"/>
-    </createTable>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-7">
-    <createTable tableName="end_user_role">
-        <column autoIncrement="true" name="id" type="BIGINT">
-            <constraints primaryKey="true"/>
-        </column>
-        <column name="created_at" type="datetime(6)"/>
-        <column name="updated_at" type="datetime(6)"/>
-        <column name="role" type="VARCHAR(255)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="end_user_id" type="BIGINT"/>
-    </createTable>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-8">
-    <createTable tableName="form_of_identification">
-        <column autoIncrement="true" name="id" type="BIGINT">
-            <constraints primaryKey="true"/>
-        </column>
-        <column name="created_at" type="datetime(6)"/>
-        <column name="updated_at" type="datetime(6)"/>
-        <column defaultValueBoolean="true" name="is_active" type="BIT(1)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="name" type="VARCHAR(50)">
-            <constraints nullable="false"/>
-        </column>
-    </createTable>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-9">
-    <createTable tableName="system_setting">
-        <column autoIncrement="true" name="id" type="BIGINT">
-            <constraints primaryKey="true"/>
-        </column>
-        <column name="created_at" type="datetime(6)"/>
-        <column name="updated_at" type="datetime(6)"/>
-        <column name="file_upload_size_limit" type="INT">
-            <constraints nullable="false"/>
-        </column>
-    </createTable>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-10">
-    <createTable tableName="user_verification_level">
-        <column autoIncrement="true" name="id" type="BIGINT">
-            <constraints primaryKey="true"/>
-        </column>
-        <column name="created_at" type="datetime(6)"/>
-        <column name="updated_at" type="datetime(6)"/>
-        <column name="end_user_id" type="BIGINT"/>
-        <column name="verification_level_id" type="BIGINT"/>
-    </createTable>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-11">
-    <createTable tableName="verification_level">
-        <column autoIncrement="true" name="id" type="BIGINT">
-            <constraints primaryKey="true"/>
-        </column>
-        <column name="created_at" type="datetime(6)"/>
-        <column name="updated_at" type="datetime(6)"/>
-        <column name="level" type="VARCHAR(20)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="name" type="VARCHAR(50)">
-            <constraints nullable="false"/>
-        </column>
-    </createTable>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-12">
-    <addUniqueConstraint columnNames="name" constraintName="UK_g82qrx7yfi0ir9mi0svt2g0up" tableName="form_of_identification"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-13">
-    <addUniqueConstraint columnNames="name" constraintName="UK_gcab80vmmr42djdpx67d9ujii" tableName="end_user_image_category"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-14">
-    <addUniqueConstraint columnNames="username" constraintName="UK_ihdhmp1sy4geiyrdi4l2oosjx" tableName="end_user"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-15">
-    <addUniqueConstraint columnNames="level" constraintName="UK_itkhv4ufygaybm45w9v4caey3" tableName="verification_level"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-16">
-    <addUniqueConstraint columnNames="user_reference" constraintName="UK_jflk2epa9x70aows8y2fpkued" tableName="end_user"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-17">
-    <addUniqueConstraint columnNames="email_address" constraintName="UK_kodespoo9bv8ljinay4407we5" tableName="end_user"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-18">
-    <addUniqueConstraint columnNames="name" constraintName="UK_lurjnje80988f29bkuov4e66r" tableName="end_user_image"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-19">
-    <addUniqueConstraint columnNames="name" constraintName="UK_ogk1mil6fyycw2s2mn5ve8gpv" tableName="verification_level"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-20">
-    <addUniqueConstraint columnNames="phone_number" constraintName="UK_sr2vyspmfuhmt54vrawd0h26w" tableName="end_user"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-21">
-    <createIndex indexName="FK3qoxsoyds4gx1ttt9y4qojs68" tableName="end_user_image">
-        <column name="owner_id"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-22">
-    <createIndex indexName="FK6tpagg5qkis7crprg7xf04laq" tableName="end_user_image">
-        <column name="end_user_image_category_id"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-23">
-    <createIndex indexName="FKehm8snfvatq2jga6oyjhukh3n" tableName="end_user_form_of_identification">
-        <column name="end_user_id"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-24">
-    <createIndex indexName="FKew8qssghrvookamxuk5x2rmvc" tableName="end_user_role">
-        <column name="end_user_id"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-25">
-    <createIndex indexName="FKj1nwu8h0rumcts65avx1b2qp0" tableName="end_user_form_of_identification">
-        <column name="form_of_identification_id"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-26">
-    <createIndex indexName="FKkqfkxup94o3mlm1puuft8oyio" tableName="end_user_image_download_history">
-        <column name="downloaded_image_id"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-27">
-    <createIndex indexName="FKpy8ym2hhc0p92g5wvf9utl1rm" tableName="user_verification_level">
-        <column name="verification_level_id"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-28">
-    <createIndex indexName="FKsubelx9bmurrgl1qxds1fv04h" tableName="user_verification_level">
-        <column name="end_user_id"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-29">
-    <createIndex indexName="FKt08la8fmpf5rgn3arr0k43kse" tableName="end_user_image_download_history">
-        <column name="end_user_id"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-30">
-    <createIndex indexName="IS_DOCUMENT_APPROVED_INDEX" tableName="end_user_form_of_identification">
-        <column name="is_approved"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-31">
-    <createIndex indexName="IS_FORM_OF_IDENTIFICATION_ACTIVE_IDX" tableName="form_of_identification">
-        <column name="is_active"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-32">
-    <createIndex indexName="IS_IMAGE_CATEGORY_ACTIVE_IDX" tableName="end_user_image_category">
-        <column name="is_active"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-33">
-    <createIndex indexName="IS_IMG_ACTIVE_INDEX" tableName="end_user_image">
-        <column name="is_active"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-34">
-    <createIndex indexName="IS_USER_ACTIVE_INDEX" tableName="end_user">
-        <column name="is_active"/>
-    </createIndex>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-35">
-    <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="end_user_image" constraintName="FK3qoxsoyds4gx1ttt9y4qojs68" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-36">
-    <addForeignKeyConstraint baseColumnNames="end_user_image_category_id" baseTableName="end_user_image" constraintName="FK6tpagg5qkis7crprg7xf04laq" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user_image_category
-"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-37">
-    <addForeignKeyConstraint baseColumnNames="end_user_id" baseTableName="end_user_form_of_identification" constraintName="FKehm8snfvatq2jga6oyjhukh3n" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-38">
-    <addForeignKeyConstraint baseColumnNames="end_user_id" baseTableName="end_user_role" constraintName="FKew8qssghrvookamxuk5x2rmvc" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-39">
-    <addForeignKeyConstraint baseColumnNames="form_of_identification_id" baseTableName="end_user_form_of_identification" constraintName="FKj1nwu8h0rumcts65avx1b2qp0" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="form_of_identification"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-40">
-    <addForeignKeyConstraint baseColumnNames="downloaded_image_id" baseTableName="end_user_image_download_history" constraintName="FKkqfkxup94o3mlm1puuft8oyio" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user_image"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-41">
-    <addForeignKeyConstraint baseColumnNames="verification_level_id" baseTableName="user_verification_level" constraintName="FKpy8ym2hhc0p92g5wvf9utl1rm" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="verification_level"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-42">
-    <addForeignKeyConstraint baseColumnNames="end_user_id" baseTableName="user_verification_level" constraintName="FKsubelx9bmurrgl1qxds1fv04h" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user"/>
-</changeSet>
-<changeSet author="jchukwu (generated)" id="1618836210114-43">
-    <addForeignKeyConstraint baseColumnNames="end_user_id" baseTableName="end_user_image_download_history" constraintName="FKt08la8fmpf5rgn3arr0k43kse" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user"/>
-</changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-1">
+        <createTable tableName="authority">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="friendly_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-2">
+        <createTable tableName="end_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column defaultValueBoolean="false" name="can_upload_images" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email_address" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column defaultValueBoolean="false" name="is_active" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="password" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="VARCHAR(20)"/>
+            <column name="user_reference" type="VARCHAR(63)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-3">
+        <createTable tableName="end_user_form_of_identification">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="document_image_url" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="is_approved" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_user_id" type="BIGINT"/>
+            <column name="form_of_identification_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-4">
+        <createTable tableName="end_user_image">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="is_active" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_file_format" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_height" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_width" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tag" type="VARCHAR(150)"/>
+            <column name="owner_id" type="BIGINT"/>
+            <column name="end_user_image_category_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-5">
+        <createTable tableName="end_user_image_category">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column defaultValueBoolean="true" name="is_active" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-6">
+        <createTable tableName="end_user_image_color">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="color" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_user_image_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-7">
+        <createTable tableName="end_user_image_download_history">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="end_user_id" type="BIGINT"/>
+            <column name="downloaded_image_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-8">
+        <createTable tableName="end_user_role">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="role" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-9">
+        <createTable tableName="form_of_identification">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column defaultValueBoolean="true" name="is_active" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-10">
+        <createTable tableName="system_setting">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="file_upload_size_limit" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-11">
+        <createTable tableName="user_verification_level">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="end_user_id" type="BIGINT"/>
+            <column name="verification_level_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-12">
+        <createTable tableName="verification_level">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="level" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-13">
+        <addUniqueConstraint columnNames="name" constraintName="UK_g82qrx7yfi0ir9mi0svt2g0up" tableName="form_of_identification"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-14">
+        <addUniqueConstraint columnNames="name" constraintName="UK_gcab80vmmr42djdpx67d9ujii" tableName="end_user_image_category"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-15">
+        <addUniqueConstraint columnNames="username" constraintName="UK_ihdhmp1sy4geiyrdi4l2oosjx" tableName="end_user"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-16">
+        <addUniqueConstraint columnNames="level" constraintName="UK_itkhv4ufygaybm45w9v4caey3" tableName="verification_level"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-17">
+        <addUniqueConstraint columnNames="user_reference" constraintName="UK_jflk2epa9x70aows8y2fpkued" tableName="end_user"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-18">
+        <addUniqueConstraint columnNames="email_address" constraintName="UK_kodespoo9bv8ljinay4407we5" tableName="end_user"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-19">
+        <addUniqueConstraint columnNames="name" constraintName="UK_lurjnje80988f29bkuov4e66r" tableName="end_user_image"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-20">
+        <addUniqueConstraint columnNames="name" constraintName="UK_ogk1mil6fyycw2s2mn5ve8gpv" tableName="verification_level"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-21">
+        <addUniqueConstraint columnNames="phone_number" constraintName="UK_sr2vyspmfuhmt54vrawd0h26w" tableName="end_user"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-22">
+        <createIndex indexName="FK3qoxsoyds4gx1ttt9y4qojs68" tableName="end_user_image">
+            <column name="owner_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-23">
+        <createIndex indexName="FK6r138w9tly8lig71p7dsy8ijs" tableName="end_user_image_color">
+            <column name="end_user_image_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-24">
+        <createIndex indexName="FK6tpagg5qkis7crprg7xf04laq" tableName="end_user_image">
+            <column name="end_user_image_category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-25">
+        <createIndex indexName="FKehm8snfvatq2jga6oyjhukh3n" tableName="end_user_form_of_identification">
+            <column name="end_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-26">
+        <createIndex indexName="FKew8qssghrvookamxuk5x2rmvc" tableName="end_user_role">
+            <column name="end_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-27">
+        <createIndex indexName="FKj1nwu8h0rumcts65avx1b2qp0" tableName="end_user_form_of_identification">
+            <column name="form_of_identification_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-28">
+        <createIndex indexName="FKkqfkxup94o3mlm1puuft8oyio" tableName="end_user_image_download_history">
+            <column name="downloaded_image_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-29">
+        <createIndex indexName="FKpy8ym2hhc0p92g5wvf9utl1rm" tableName="user_verification_level">
+            <column name="verification_level_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-30">
+        <createIndex indexName="FKsubelx9bmurrgl1qxds1fv04h" tableName="user_verification_level">
+            <column name="end_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-31">
+        <createIndex indexName="FKt08la8fmpf5rgn3arr0k43kse" tableName="end_user_image_download_history">
+            <column name="end_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-32">
+        <createIndex indexName="IS_DOCUMENT_APPROVED_INDEX" tableName="end_user_form_of_identification">
+            <column name="is_approved"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-33">
+        <createIndex indexName="IS_FORM_OF_IDENTIFICATION_ACTIVE_IDX" tableName="form_of_identification">
+            <column name="is_active"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-34">
+        <createIndex indexName="IS_IMAGE_CATEGORY_ACTIVE_IDX" tableName="end_user_image_category">
+            <column name="is_active"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-35">
+        <createIndex indexName="IS_IMG_ACTIVE_INDEX" tableName="end_user_image">
+            <column name="is_active"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-36">
+        <createIndex indexName="IS_USER_ACTIVE_INDEX" tableName="end_user">
+            <column name="is_active"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-37">
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="end_user_image" constraintName="FK3qoxsoyds4gx1ttt9y4qojs68" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-38">
+        <addForeignKeyConstraint baseColumnNames="end_user_image_id" baseTableName="end_user_image_color" constraintName="FK6r138w9tly8lig71p7dsy8ijs" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user_image"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-39">
+        <addForeignKeyConstraint baseColumnNames="end_user_image_category_id" baseTableName="end_user_image" constraintName="FK6tpagg5qkis7crprg7xf04laq" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user_image_category"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-40">
+        <addForeignKeyConstraint baseColumnNames="end_user_id" baseTableName="end_user_form_of_identification" constraintName="FKehm8snfvatq2jga6oyjhukh3n" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-41">
+        <addForeignKeyConstraint baseColumnNames="end_user_id" baseTableName="end_user_role" constraintName="FKew8qssghrvookamxuk5x2rmvc" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-42">
+        <addForeignKeyConstraint baseColumnNames="form_of_identification_id" baseTableName="end_user_form_of_identification" constraintName="FKj1nwu8h0rumcts65avx1b2qp0" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="form_of_identification"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-43">
+        <addForeignKeyConstraint baseColumnNames="downloaded_image_id" baseTableName="end_user_image_download_history" constraintName="FKkqfkxup94o3mlm1puuft8oyio" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user_image"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-44">
+        <addForeignKeyConstraint baseColumnNames="verification_level_id" baseTableName="user_verification_level" constraintName="FKpy8ym2hhc0p92g5wvf9utl1rm" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="verification_level"
+        />
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-45">
+        <addForeignKeyConstraint baseColumnNames="end_user_id" baseTableName="user_verification_level" constraintName="FKsubelx9bmurrgl1qxds1fv04h" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user"/>
+    </changeSet>
+    <changeSet author="jchukwu (generated)" id="1618956977579-46">
+        <addForeignKeyConstraint baseColumnNames="end_user_id" baseTableName="end_user_image_download_history" constraintName="FKt08la8fmpf5rgn3arr0k43kse" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="end_user"/>
+    </changeSet>
 </databaseChangeLog>

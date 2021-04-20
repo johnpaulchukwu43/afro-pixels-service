@@ -3,6 +3,7 @@ package com.jworks.afro.pixels.service.services.impl;
 import com.jworks.afro.pixels.service.entities.EndUser;
 import com.jworks.afro.pixels.service.entities.EndUserImage;
 import com.jworks.afro.pixels.service.entities.EndUserImageCategory;
+import com.jworks.afro.pixels.service.entities.EndUserImageColor;
 import com.jworks.afro.pixels.service.exceptions.DuplicateEntryException;
 import com.jworks.afro.pixels.service.exceptions.NotFoundRestApiException;
 import com.jworks.afro.pixels.service.exceptions.SystemServiceException;
@@ -10,12 +11,14 @@ import com.jworks.afro.pixels.service.exceptions.UnProcessableOperationException
 import com.jworks.afro.pixels.service.models.*;
 import com.jworks.afro.pixels.service.repositories.EndUserImageRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,14 +34,16 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
     private final EndUserImageRepository endUserImageRepository;
     private final EndUserImageCategoryService endUserImageCategoryService;
     private final EndUserService endUserService;
+    private final EndUserImageColorService endUserImageColorService;
 
 
     @Autowired
-    EndUserImageService(EndUserImageRepository endUserImageRepository, EndUserImageCategoryService endUserImageCategoryService, EndUserService endUserService){
+    EndUserImageService(EndUserImageRepository endUserImageRepository, EndUserImageCategoryService endUserImageCategoryService, EndUserService endUserService, EndUserImageColorService endUserImageColorService){
         super(endUserImageRepository);
         this.endUserImageRepository = endUserImageRepository;
         this.endUserImageCategoryService = endUserImageCategoryService;
         this.endUserService = endUserService;
+        this.endUserImageColorService = endUserImageColorService;
     }
 
 
@@ -58,6 +63,7 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
         }
     }
 
+    @Transactional(rollbackOn = Exception.class)
     public String createEndUserImage(CreateEndUserImageDto createEndUserImageDto,String username) throws NotFoundRestApiException, SystemServiceException, UnProcessableOperationException {
 
         /*
@@ -107,26 +113,43 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
     }
 
 
-    private String persistEndUserImage(CreateEndUserImageDto createEndUserImageDto, EndUser endUser,EndUserImageCategory endUserImageCategory) throws DuplicateEntryException {
+    private String persistEndUserImage(CreateEndUserImageDto createEndUserImageDto, EndUser endUser,EndUserImageCategory endUserImageCategory) throws SystemServiceException {
 
         String name = createEndUserImageDto.getName();
         checkIfImageExists(name,endUserImageCategory);
 
-        EndUserImage.MetaData imageMetaData = EndUserImage.MetaData.builder().build();
+        EndUserImage.MetaData metaData = buildEndUserImageMetaData(createEndUserImageDto.getMetaData());
 
-        EndUserImage endUserImage = EndUserImage.builder()
+        EndUserImage endUserImageBuilder = EndUserImage.builder()
                 .endUser(endUser)
                 .endUserImageCategory(endUserImageCategory)
                 .description(createEndUserImageDto.getDescription())
                 .isActive(true)
                 .name(name)
-                .metaData(imageMetaData)
+                .metaData(metaData)
                 .tag(createEndUserImageDto.getTag())
                 .build();
 
-        endUserImageRepository.save(endUserImage);
+        EndUserImage persistedEndUserImage = endUserImageRepository.save(endUserImageBuilder);
+
+        saveEndUserImageAndColors(persistedEndUserImage,createEndUserImageDto.getMetaData().getImageColors());
 
         return name;
+    }
+
+    private void saveEndUserImageAndColors(EndUserImage persistedEndUserImage, List<String> imageColors) throws SystemServiceException {
+        for (String imageColor : imageColors) {
+            endUserImageColorService.saveEndUserImageColor(persistedEndUserImage, imageColor.toLowerCase());
+        }
+    }
+
+    private EndUserImage.MetaData buildEndUserImageMetaData(MetaDataDto metaDataDto) {
+
+        EndUserImage.MetaData metaData = new EndUserImage.MetaData();
+
+        BeanUtils.copyProperties(metaDataDto,metaData);
+
+        return metaData;
     }
 
     private EndUserImageCategory getImageCategoryIfExists(Long categoryId) throws NotFoundRestApiException {
@@ -154,11 +177,23 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
                                     .username(entity.getEndUser().getUsername())
                                     .build();
 
+        EndUserImage.MetaData metaData = entity.getMetaData();
+        MetaDataDto metaDataDto = new MetaDataDto();
+        List<String> imageColorsDto = new ArrayList<>();
+
+        BeanUtils.copyProperties(metaData,metaDataDto);
+        List<EndUserImageColor> imageColors = metaData.getImageColors();
+
+        imageColors.forEach(imageColor -> imageColorsDto.add(imageColor.getColor()));
+
+        metaDataDto.setImageColors(imageColorsDto);
+
+
         return EndUserImageDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())
                 .description(entity.getDescription())
-                .imageUrl(entity.getImageUrl())
+                .metaData(metaDataDto)
                 .endUserImageCategory(endUserImageCategoryDto)
                 .imageOwner(endUserDto)
                 .isActive(entity.isActive())

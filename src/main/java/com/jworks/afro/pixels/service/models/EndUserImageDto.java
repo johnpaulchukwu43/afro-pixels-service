@@ -1,7 +1,6 @@
 package com.jworks.afro.pixels.service.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.jworks.afro.pixels.service.entities.EndUserImageCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,5 +37,5 @@ public class EndUserImageDto implements Serializable {
 
     private boolean isActive;
 
-
+    private MetaDataDto metaData;
 }

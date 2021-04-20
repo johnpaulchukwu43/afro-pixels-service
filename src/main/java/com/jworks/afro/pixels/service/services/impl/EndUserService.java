@@ -59,7 +59,7 @@ public class EndUserService extends ServiceBluePrintImpl<EndUser,EndUserDto> imp
     }
 
     @Transactional(rollbackFor=Exception.class)
-    public EndUserDto performSignUpProcess(EndUserDto endUserDto) throws NotFoundRestApiException, SystemServiceException {
+    public EndUserDto performSignUpProcess(CreateEndUserDto endUserDto) throws NotFoundRestApiException, SystemServiceException {
 
         EndUser endUser = createUser(endUserDto);
 
@@ -181,7 +181,7 @@ public class EndUserService extends ServiceBluePrintImpl<EndUser,EndUserDto> imp
        return convertEntityToDto(getUserByUsername(endUserUsername));
     }
 
-    private EndUser createUser(EndUserDto endUserDto) throws SystemServiceException {
+    private EndUser createUser(CreateEndUserDto endUserDto) throws SystemServiceException {
 
         String username = endUserDto.getUsername();
 
@@ -265,7 +265,7 @@ public class EndUserService extends ServiceBluePrintImpl<EndUser,EndUserDto> imp
         endUserFormOfIdentificationService.save(endUserFormOfIdentification);
     }
     
-    private Optional<FormOfIdentification> verifyFormOfIdentificationDocumentUpload(EndUserDto endUserDto) throws NotFoundRestApiException {
+    private Optional<FormOfIdentification> verifyFormOfIdentificationDocumentUpload(CreateEndUserDto endUserDto) throws NotFoundRestApiException {
 
         String formOfIdentificationType = endUserDto.getFormOfIdentificationType();
         String formOfIdentificationDocumentUrl = endUserDto.getFormOfIdentificationDocumentUrl();

@@ -10,6 +10,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -27,12 +28,23 @@ import java.util.*;
 @RestControllerAdvice
 public class GeneralControllerAdvice {
 
-    //todo handle http method not supported exception
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResponseDto handleSystemError(Exception ex) {
         return processException(ApiResponseDto.Status.error, "System error. Please contact the administrator.", ex);
+    }
+
+    @ExceptionHandler(SystemServiceException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ApiResponseDto handleSystemServiceException(SystemServiceException ex) {
+        return processException(ApiResponseDto.Status.error, ex.getMessage(), ex);
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    public ApiResponseDto handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException ex) {
+        return processException(ApiResponseDto.Status.error,  ex.getMessage(), ex);
     }
 
     @ExceptionHandler(BadCredentialsException.class)
@@ -49,7 +61,7 @@ public class GeneralControllerAdvice {
 
     @ExceptionHandler(BadRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiResponseDto handleTransactionServiceException(BadRequestException ex) {
+    public ApiResponseDto handleBadRequestException(BadRequestException ex) {
         return processException(ApiResponseDto.Status.fail, ex.getMessage(), ex);
     }
 

@@ -32,5 +32,5 @@ public class MetaDataDto implements Serializable {
     private Integer imageHeight;
 
     @NotNull(message = "imageColors is a required field")
-    private List<EndUserImageColor> imageColors;
+    private List<String> imageColors;
 }

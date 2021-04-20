@@ -34,7 +34,7 @@ public class EndUserController {
     private final EndUserAuthenticationService endUserAuthenticationService;
 
     @PostMapping("/signup")
-    public ResponseEntity<ApiResponseDto> createEndUser(@Valid @RequestBody EndUserDto endUserDto) throws SystemServiceException, NotFoundRestApiException {
+    public ResponseEntity<ApiResponseDto> createEndUser(@Valid @RequestBody CreateEndUserDto endUserDto) throws SystemServiceException, NotFoundRestApiException {
 
         EndUserDto persistedUserInfo = endUserService.performSignUpProcess(endUserDto);
 
