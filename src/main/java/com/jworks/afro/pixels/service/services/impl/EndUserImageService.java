@@ -112,13 +112,15 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
         String name = createEndUserImageDto.getName();
         checkIfImageExists(name,endUserImageCategory);
 
+        EndUserImage.MetaData imageMetaData = EndUserImage.MetaData.builder().build();
+
         EndUserImage endUserImage = EndUserImage.builder()
                 .endUser(endUser)
                 .endUserImageCategory(endUserImageCategory)
                 .description(createEndUserImageDto.getDescription())
-                .imageUrl(createEndUserImageDto.getImageUrl())
                 .isActive(true)
                 .name(name)
+                .metaData(imageMetaData)
                 .tag(createEndUserImageDto.getTag())
                 .build();
 

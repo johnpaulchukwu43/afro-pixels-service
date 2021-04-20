@@ -5,10 +5,17 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Johnpaul Chukwu.
  * @since 17/12/2020
+ *
+ *
+ * imageType
+ * width
+ * height
+ * colors
  */
 
 @Entity
@@ -42,10 +49,35 @@ public class EndUserImage extends BaseEntity implements Serializable {
     @Column(nullable = false)
     private String description;
 
-    @Column(length = 200, nullable = false)
-    private String imageUrl;
-
     @Column(name = "is_active",nullable = false)
     @ColumnDefault("0")
     private boolean isActive;
+
+    @Embedded
+    private MetaData metaData;
+
+
+    @Data
+    @Builder
+    @Embeddable
+    @NoArgsConstructor
+    public static class MetaData implements Serializable {
+
+        private static final long serialVersionUID = 1L;
+
+        @Column(length = 200, nullable = false)
+        private String imageUrl;
+
+        @Column(length = 10, nullable = false)
+        private String imageFileFormat;
+
+        @Column(nullable = false)
+        private Integer imageWidth;
+
+        @Column(nullable = false)
+        private Integer imageHeight;
+
+        @OneToMany(mappedBy = "endUserImage")
+        private List<EndUserImageColor> imageColors;
+    }
 }

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,6 +37,6 @@ public class CreateEndUserImageDto implements Serializable {
     @NotNull(message = "Description is a required field")
     private String description;
 
-    @NotBlank(message = "Image url is a required field")
-    private String imageUrl;
+    @Valid
+    private MetaDataDto metaData;
 }

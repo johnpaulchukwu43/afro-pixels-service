@@ -37,4 +37,6 @@ public class EndUserImageDto implements Serializable {
     private String imageUrl;
 
     private boolean isActive;
+
+
 }
