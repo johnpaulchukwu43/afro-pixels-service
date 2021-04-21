@@ -9,6 +9,14 @@ spring:
   session:
     store-type: none
 
+hibernate:
+  search:
+    backend:
+      hosts: ${SEARCH_BACKEND_HOST}
+      protocol: ${SEARCH_BACKEND_PROTOCOL}
+      mass-index:
+        number-of-threads: ${SEARCH_BACKEND_MASS_INDEX_NO_OF_THREADS}
+
 afro:
   pixels:
     datasource:
