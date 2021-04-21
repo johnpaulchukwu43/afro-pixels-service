@@ -46,7 +46,6 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
         this.endUserImageColorService = endUserImageColorService;
     }
 
-
     public EndUserImageDto getEndUserImageById(Long endUserImageId) throws NotFoundRestApiException {
 
         EndUserImage endUserImage = endUserImageRepository.findById(endUserImageId).orElseThrow(
@@ -54,13 +53,6 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
         );
 
         return convertEntityToDto(endUserImage);
-    }
-
-    private void checkIfImageExists(String name, EndUserImageCategory endUserImageCategory) throws DuplicateEntryException {
-
-        if(endUserImageRepository.findByNameAndEndUserImageCategory(name,endUserImageCategory).isPresent()){
-            throw new DuplicateEntryException(String.format("User Image with name: %s already exists for category: %s", name,endUserImageCategory.getName()));
-        }
     }
 
     @Transactional(rollbackOn = Exception.class)
@@ -162,7 +154,12 @@ public class EndUserImageService extends ServiceBluePrintImpl<EndUserImage, EndU
         return endUserService.getUserByUsername(username);
     }
 
+    private void checkIfImageExists(String name, EndUserImageCategory endUserImageCategory) throws DuplicateEntryException {
 
+        if(endUserImageRepository.findByNameAndEndUserImageCategory(name,endUserImageCategory).isPresent()){
+            throw new DuplicateEntryException(String.format("User Image with name: %s already exists for category: %s", name,endUserImageCategory.getName()));
+        }
+    }
 
 
     @Override

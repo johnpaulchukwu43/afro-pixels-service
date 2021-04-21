@@ -4,6 +4,7 @@ import com.jworks.afro.pixels.service.exceptions.NotFoundRestApiException;
 import com.jworks.afro.pixels.service.exceptions.SystemServiceException;
 import com.jworks.afro.pixels.service.exceptions.UnProcessableOperationException;
 import com.jworks.afro.pixels.service.models.*;
+import com.jworks.afro.pixels.service.services.impl.EndUserImageSearchService;
 import com.jworks.afro.pixels.service.services.impl.EndUserImageService;
 import com.jworks.afro.pixels.service.utils.ApiUtil;
 import com.jworks.afro.pixels.service.utils.HasAuthority;
@@ -16,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author Johnpaul Chukwu.
@@ -31,6 +33,7 @@ import javax.validation.Valid;
 public class EndUserImageController {
 
     private final EndUserImageService endUserImageService;
+    private final EndUserImageSearchService endUserImageSearchService;
 
 
     @GetMapping("/{imageId}")
@@ -67,6 +70,17 @@ public class EndUserImageController {
                 endUserImages
         );
 
+    }
+
+
+    @GetMapping("/search-suggestion")
+    public ResponseEntity<ApiResponseDto> getSearchSuggestions(@RequestParam(name = "searchTerm") String searchTerm){
+        EndUserImageSearchSuggestionDto suggestions = endUserImageSearchService.fetchSuggestions(searchTerm);
+
+        return ApiUtil.response(
+                HttpStatus.OK, ApiResponseDto.Status.success," Image suggestions fetched successfully.",
+                suggestions
+        );
     }
 
 }
