@@ -110,7 +110,7 @@ public class EndUserImageSearchService {
 
         searchResults.hits().forEach(endUserImage -> searchResultsDto.add(toImageDto(endUserImage)));
 
-        return new PageOutput<>(searchResultsDto, pageInput.getPage(), searchResults.hits().size());
+        return new PageOutput<>(searchResultsDto, searchResults.hits().size(),pageInput.getPage());
 
     }
 
