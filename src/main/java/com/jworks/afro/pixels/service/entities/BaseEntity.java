@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.hibernate.search.engine.backend.types.Sortable;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -25,6 +27,7 @@ public class BaseEntity {
 
 
     @CreatedDate
+    @GenericField(sortable = Sortable.YES)
     private Timestamp createdAt;
 
     @LastModifiedDate
