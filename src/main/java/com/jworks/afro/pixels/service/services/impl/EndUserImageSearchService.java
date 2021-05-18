@@ -1,7 +1,11 @@
 package com.jworks.afro.pixels.service.services.impl;
 
 import com.jworks.afro.pixels.service.entities.EndUserImage;
-import com.jworks.afro.pixels.service.models.*;
+import com.jworks.afro.pixels.service.models.EndUserImageDto;
+import com.jworks.afro.pixels.service.models.EndUserImageSearchDto;
+import com.jworks.afro.pixels.service.models.EndUserImageSearchSuggestionDto;
+import com.jworks.app.commons.models.PageInput;
+import com.jworks.app.commons.models.PageOutput;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

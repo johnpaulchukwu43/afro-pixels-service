@@ -2,8 +2,9 @@ package com.jworks.afro.pixels.service.services.impl;
 
 import com.jworks.afro.pixels.service.entities.EndUser;
 import com.jworks.afro.pixels.service.entities.EndUserRole;
-import com.jworks.afro.pixels.service.exceptions.NotFoundRestApiException;
 import com.jworks.afro.pixels.service.repositories.EndUserRoleRepository;
+import com.jworks.app.commons.exceptions.NotFoundRestApiException;
+import com.jworks.app.commons.services.impl.ServiceBluePrintImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class EndUserRoleService extends ServiceBluePrintImpl<EndUserRole,EndUserRole>{
+public class EndUserRoleService extends ServiceBluePrintImpl<EndUserRole,EndUserRole> {
 
     private final EndUserRoleRepository endUserRoleRepository;
 

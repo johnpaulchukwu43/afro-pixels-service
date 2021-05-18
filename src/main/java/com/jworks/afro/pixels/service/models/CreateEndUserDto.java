@@ -1,7 +1,7 @@
 package com.jworks.afro.pixels.service.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.jworks.afro.pixels.service.validator.AcceptedPasswordFormat;
+import com.jworks.app.commons.validator.AcceptedPasswordFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

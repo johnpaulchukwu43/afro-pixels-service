@@ -4,8 +4,9 @@ import com.jworks.afro.pixels.service.entities.EndUser;
 import com.jworks.afro.pixels.service.entities.EndUserVerificationLevel;
 import com.jworks.afro.pixels.service.entities.VerificationLevel;
 import com.jworks.afro.pixels.service.enums.Level;
-import com.jworks.afro.pixels.service.exceptions.SystemServiceException;
 import com.jworks.afro.pixels.service.repositories.EndUserVerificationLevelRepository;
+import com.jworks.app.commons.exceptions.SystemServiceException;
+import com.jworks.app.commons.services.impl.ServiceBluePrintImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class EndUserVerificationLevelService extends ServiceBluePrintImpl<EndUserVerificationLevel,EndUserVerificationLevel>{
+public class EndUserVerificationLevelService extends ServiceBluePrintImpl<EndUserVerificationLevel,EndUserVerificationLevel> {
 
 
     private final EndUserVerificationLevelRepository endUserVerificationLevelRepository;

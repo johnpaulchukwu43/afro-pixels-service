@@ -1,9 +1,8 @@
 package com.jworks.afro.pixels.service.services.impl;
-
-import com.jworks.afro.pixels.service.exceptions.NotFoundRestApiException;
-import com.jworks.afro.pixels.service.models.AuthenticationRequest;
-import com.jworks.afro.pixels.service.models.AuthenticationResponse;
 import com.jworks.afro.pixels.service.utils.JwtUtil;
+import com.jworks.app.commons.exceptions.NotFoundRestApiException;
+import com.jworks.app.commons.models.AuthenticationRequest;
+import com.jworks.app.commons.models.AuthenticationResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

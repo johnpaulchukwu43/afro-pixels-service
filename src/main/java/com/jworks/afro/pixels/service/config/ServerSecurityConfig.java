@@ -1,7 +1,8 @@
 package com.jworks.afro.pixels.service.config;
 
 import com.jworks.afro.pixels.service.services.impl.EndUserService;
-import com.jworks.afro.pixels.service.utils.RestConstants;
+import com.jworks.app.commons.config.JwtAuthenticationEntryPoint;
+import com.jworks.app.commons.utils.RestConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

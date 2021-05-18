@@ -1,9 +1,10 @@
 package com.jworks.afro.pixels.service.services.impl;
 
-import com.jworks.afro.pixels.service.entities.*;
-import com.jworks.afro.pixels.service.enums.Level;
-import com.jworks.afro.pixels.service.exceptions.SystemServiceException;
+import com.jworks.afro.pixels.service.entities.EndUserImage;
+import com.jworks.afro.pixels.service.entities.EndUserImageColor;
 import com.jworks.afro.pixels.service.repositories.EndUserImageColorRepository;
+import com.jworks.app.commons.exceptions.SystemServiceException;
+import com.jworks.app.commons.services.impl.ServiceBluePrintImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class EndUserImageColorService extends ServiceBluePrintImpl<EndUserImageColor,EndUserImageColor>{
+public class EndUserImageColorService extends ServiceBluePrintImpl<EndUserImageColor,EndUserImageColor> {
 
 
     private final EndUserImageColorRepository endUserImageColorRepository;

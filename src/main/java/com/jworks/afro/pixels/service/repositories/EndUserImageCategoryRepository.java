@@ -2,6 +2,7 @@ package com.jworks.afro.pixels.service.repositories;
 
 import com.jworks.afro.pixels.service.entities.EndUserImageCategory;
 import com.jworks.afro.pixels.service.repositories.projection.IdProjection;
+import com.jworks.app.commons.repositories.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -12,9 +13,7 @@ import java.util.Optional;
  */
 
 @Repository
-public interface EndUserImageCategoryRepository extends BaseRepository<EndUserImageCategory,Long>{
+public interface EndUserImageCategoryRepository extends BaseRepository<EndUserImageCategory,Long> {
 
     Optional<IdProjection> findIdByName(String categoryName);
-
-    Optional<EndUserImageCategory> findById(Long categoryId);
 }

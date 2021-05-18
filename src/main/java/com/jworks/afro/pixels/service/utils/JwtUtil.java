@@ -1,11 +1,10 @@
 package com.jworks.afro.pixels.service.utils;
 
-import java.util.*;
-
 import com.jworks.afro.pixels.service.enums.Role;
-import com.jworks.afro.pixels.service.exceptions.NotFoundRestApiException;
 import com.jworks.afro.pixels.service.models.EndUserDto;
 import com.jworks.afro.pixels.service.services.impl.EndUserService;
+import com.jworks.app.commons.exceptions.NotFoundRestApiException;
+import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,13 +14,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
+import java.util.*;
 
 @Slf4j
 @Service

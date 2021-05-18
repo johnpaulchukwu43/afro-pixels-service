@@ -1,6 +1,7 @@
 package com.jworks.afro.pixels.service.repositories;
 
 import com.jworks.afro.pixels.service.entities.EndUserFormOfIdentification;
+import com.jworks.app.commons.repositories.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface EndUserFormOfIdentificationRepository extends BaseRepository<EndUserFormOfIdentification,Long>{
+public interface EndUserFormOfIdentificationRepository extends BaseRepository<EndUserFormOfIdentification,Long> {
 }

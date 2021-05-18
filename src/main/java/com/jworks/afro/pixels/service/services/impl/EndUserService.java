@@ -5,10 +5,12 @@ import com.jworks.afro.pixels.service.entities.EndUserFormOfIdentification;
 import com.jworks.afro.pixels.service.entities.EndUserRole;
 import com.jworks.afro.pixels.service.entities.FormOfIdentification;
 import com.jworks.afro.pixels.service.enums.Role;
-import com.jworks.afro.pixels.service.exceptions.*;
 import com.jworks.afro.pixels.service.models.*;
 import com.jworks.afro.pixels.service.repositories.EndUserRepository;
 import com.jworks.afro.pixels.service.utils.EndUserReferenceGenerator;
+import com.jworks.app.commons.exceptions.*;
+import com.jworks.app.commons.models.PasswordResetDto;
+import com.jworks.app.commons.services.impl.ServiceBluePrintImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,7 +138,7 @@ public class EndUserService extends ServiceBluePrintImpl<EndUser,EndUserDto> imp
         }
     }
 
-    public void resetUserPassword(PasswordResetDto passwordResetDto ,String username, Long userId) throws SystemServiceException, NotFoundRestApiException {
+    public void resetUserPassword(PasswordResetDto passwordResetDto , String username, Long userId) throws SystemServiceException, NotFoundRestApiException {
 
         EndUser endUserToUpdate = getUserById(userId);
 

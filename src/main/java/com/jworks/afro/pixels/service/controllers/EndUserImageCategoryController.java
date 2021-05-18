@@ -1,13 +1,12 @@
 package com.jworks.afro.pixels.service.controllers;
-
-import com.jworks.afro.pixels.service.exceptions.NotFoundRestApiException;
-import com.jworks.afro.pixels.service.exceptions.SystemServiceException;
-import com.jworks.afro.pixels.service.models.ApiResponseDto;
 import com.jworks.afro.pixels.service.models.EndUserImageCategoryDto;
 import com.jworks.afro.pixels.service.services.impl.EndUserImageCategoryService;
-import com.jworks.afro.pixels.service.utils.ApiUtil;
 import com.jworks.afro.pixels.service.utils.HasAuthority;
-import com.jworks.afro.pixels.service.utils.RestConstants;
+import com.jworks.app.commons.exceptions.NotFoundRestApiException;
+import com.jworks.app.commons.exceptions.SystemServiceException;
+import com.jworks.app.commons.models.ApiResponseDto;
+import com.jworks.app.commons.utils.ApiUtil;
+import com.jworks.app.commons.utils.RestConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,7 @@
 package com.jworks.afro.pixels.service.repositories;
 
 import com.jworks.afro.pixels.service.entities.FormOfIdentification;
+import com.jworks.app.commons.repositories.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -11,7 +12,7 @@ import java.util.Optional;
  */
 
 @Repository
-public interface FormOfIdentificationRepository extends BaseRepository<FormOfIdentification,Long>{
+public interface FormOfIdentificationRepository extends BaseRepository<FormOfIdentification,Long> {
 
     Optional<FormOfIdentification> findByName(String name);
 }

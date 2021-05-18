@@ -1,11 +1,12 @@
 package com.jworks.afro.pixels.service.services.impl;
 
 import com.jworks.afro.pixels.service.entities.EndUserImageCategory;
-import com.jworks.afro.pixels.service.exceptions.DuplicateEntryException;
-import com.jworks.afro.pixels.service.exceptions.NotFoundRestApiException;
-import com.jworks.afro.pixels.service.exceptions.SystemServiceException;
 import com.jworks.afro.pixels.service.models.EndUserImageCategoryDto;
 import com.jworks.afro.pixels.service.repositories.EndUserImageCategoryRepository;
+import com.jworks.app.commons.exceptions.DuplicateEntryException;
+import com.jworks.app.commons.exceptions.NotFoundRestApiException;
+import com.jworks.app.commons.exceptions.SystemServiceException;
+import com.jworks.app.commons.services.impl.ServiceBluePrintImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

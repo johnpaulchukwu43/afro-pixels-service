@@ -2,8 +2,9 @@ package com.jworks.afro.pixels.service.services.impl;
 
 import com.jworks.afro.pixels.service.entities.VerificationLevel;
 import com.jworks.afro.pixels.service.enums.Level;
-import com.jworks.afro.pixels.service.exceptions.SystemServiceException;
 import com.jworks.afro.pixels.service.repositories.VerificationLevelRepository;
+import com.jworks.app.commons.exceptions.SystemServiceException;
+import com.jworks.app.commons.services.impl.ServiceBluePrintImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class VerificationLevelService extends ServiceBluePrintImpl<VerificationLevel,VerificationLevel>{
+public class VerificationLevelService extends ServiceBluePrintImpl<VerificationLevel,VerificationLevel> {
 
 
     private final VerificationLevelRepository verificationLevelRepository;

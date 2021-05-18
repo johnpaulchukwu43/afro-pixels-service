@@ -1,6 +1,8 @@
 package com.jworks.afro.pixels.service.models;
 
-import com.jworks.afro.pixels.service.exceptions.BadRequestException;
+
+import com.jworks.app.commons.exceptions.BadRequestException;
+import com.jworks.app.commons.models.PageInput;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

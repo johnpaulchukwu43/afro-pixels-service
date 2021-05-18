@@ -1,8 +1,7 @@
 package com.jworks.afro.pixels.service.repositories;
 
-import com.jworks.afro.pixels.service.entities.EndUserImage;
 import com.jworks.afro.pixels.service.entities.EndUserImageColor;
-import com.jworks.afro.pixels.service.entities.FormOfIdentification;
+import com.jworks.app.commons.repositories.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -13,7 +12,7 @@ import java.util.Optional;
  */
 
 @Repository
-public interface EndUserImageColorRepository extends BaseRepository<EndUserImageColor,Long>{
+public interface EndUserImageColorRepository extends BaseRepository<EndUserImageColor,Long> {
 
     Optional<EndUserImageColor> findByEndUserImage(EndUserImageColor endUserImageColor);
 }

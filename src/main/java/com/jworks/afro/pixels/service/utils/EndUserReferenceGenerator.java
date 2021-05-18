@@ -1,7 +1,7 @@
 package com.jworks.afro.pixels.service.utils;
 
-import com.jworks.afro.pixels.service.exceptions.SystemServiceException;
 import com.jworks.afro.pixels.service.repositories.EndUserRepository;
+import com.jworks.app.commons.exceptions.SystemServiceException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

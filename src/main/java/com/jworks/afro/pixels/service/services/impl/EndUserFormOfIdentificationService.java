@@ -2,6 +2,7 @@ package com.jworks.afro.pixels.service.services.impl;
 
 import com.jworks.afro.pixels.service.entities.EndUserFormOfIdentification;
 import com.jworks.afro.pixels.service.repositories.EndUserFormOfIdentificationRepository;
+import com.jworks.app.commons.services.impl.ServiceBluePrintImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class EndUserFormOfIdentificationService extends ServiceBluePrintImpl<EndUserFormOfIdentification,EndUserFormOfIdentification>{
+public class EndUserFormOfIdentificationService extends ServiceBluePrintImpl<EndUserFormOfIdentification,EndUserFormOfIdentification> {
 
     private final EndUserFormOfIdentificationRepository endUserFormOfIdentificationRepository;
 

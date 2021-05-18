@@ -1,8 +1,9 @@
 package com.jworks.afro.pixels.service.services.impl;
 
 import com.jworks.afro.pixels.service.entities.FormOfIdentification;
-import com.jworks.afro.pixels.service.exceptions.NotFoundRestApiException;
 import com.jworks.afro.pixels.service.repositories.FormOfIdentificationRepository;
+import com.jworks.app.commons.exceptions.NotFoundRestApiException;
+import com.jworks.app.commons.services.impl.ServiceBluePrintImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class FormOfIdentificationService extends ServiceBluePrintImpl<FormOfIdentification,FormOfIdentification>{
+public class FormOfIdentificationService extends ServiceBluePrintImpl<FormOfIdentification,FormOfIdentification> {
 
     private final  FormOfIdentificationRepository formOfIdentificationRepository;
 
